@@ -5,6 +5,17 @@
 //! This library defines multiple types of sizes ranging between 8 and 128-bit,
 //! that can represent a normalized value (between 0 and 1 if unsigned, or -1
 //! and 1 if signed), mapping the range to its `::MIN` & `::MAX` boundaries.
+//!
+//! # Example
+//!
+//! ```
+//! # use iunorm::*;
+//! assert_eq![u64::MAX, Unorm64::from_f64( 1.0).into()];
+//!
+//! assert_eq![i16::MIN, Inorm16::from_f32(-1.0).into()];
+//! ```
+//!
+//! Values less
 //
 
 #![warn(clippy::all)]
@@ -18,6 +29,9 @@
 )]
 #![forbid(unsafe_code)]
 #![no_std]
+
+#[cfg(test)]
+mod test;
 
 mod generate;
 pub use generate::*;

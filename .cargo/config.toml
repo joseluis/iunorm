@@ -39,4 +39,10 @@ rrqe = "run --release --quiet --example"
 t = "test -- --nocapture"
 t1 = "test -- --test-threads 1 --nocapture"
 
+# PUBLISH
+p = "publish --dry-run"
+pa = "publish --dry-run --allow-dirty"
+pp = "publish"
+ppa = "publish --allow-dirty"
+
 [build]
