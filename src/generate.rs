@@ -26,9 +26,22 @@ macro_rules! norm_sizes {
                     const FORMULA: f64 = 1. / (($utype::MAX) as f64 + 1.);
                     Self((f / FORMULA) as _)
                 }
+
+                #[doc = "Returns a normalized `f32` between `0..1`" ]
+                #[inline]
+                #[must_use]
+                pub fn to_f32(&self) -> f32 {
+                    self.0 as f32 / $utype::MAX as f32
+                }
+                #[doc = "Returns a normalized `f64` between `0..1`." ]
+                #[inline]
+                #[must_use]
+                pub fn to_f64(&self) -> f64 {
+                    self.0 as f64 / $utype::MAX as f64
+                }
             }
 
-            // from floats
+            // from/into floats
             impl From<f32> for [<Unorm $size>] {
                 #[inline]
                 fn from(f: f32) -> Self {
@@ -39,6 +52,18 @@ macro_rules! norm_sizes {
                 #[inline]
                 fn from(f: f64) -> Self {
                     Self::from_f64(f)
+                }
+            }
+            impl From<[<Unorm $size>]> for f32 {
+                #[inline]
+                fn from(f: [<Unorm $size>]) -> f32 {
+                    f.to_f32()
+                }
+            }
+            impl From<[<Unorm $size>]> for f64 {
+                #[inline]
+                fn from(f: [<Unorm $size>]) -> f64 {
+                    f.to_f64()
                 }
             }
 
@@ -78,9 +103,28 @@ macro_rules! norm_sizes {
                     const FORMULA: f64 = 1. / (($itype::MAX) as f64 + 1.);
                     Self((f / FORMULA) as _)
                 }
+
+                #[doc = "Returns a normalized `f32` between `-1..1`." ]
+                #[inline]
+                #[must_use]
+                pub fn to_f32(&self) -> f32 {
+                    match self.0 {
+                        $itype::MIN => -1.,
+                        _ => self.0 as f32 / $itype::MAX as f32,
+                    }
+                }
+                #[doc = "Returns a normalized `f64` between `-1..1`." ]
+                #[inline]
+                #[must_use]
+                pub fn to_f64(&self) -> f64 {
+                    match self.0 {
+                        $itype::MIN => -1.,
+                        _ => self.0 as f64 / $itype::MAX as f64,
+                    }
+                }
             }
 
-            // from floats
+            // from/into floats
             impl From<f32> for [<Inorm $size>] {
                 #[inline]
                 fn from(f: f32) -> Self {
@@ -91,6 +135,18 @@ macro_rules! norm_sizes {
                 #[inline]
                 fn from(f: f64) -> Self {
                     Self::from_f64(f)
+                }
+            }
+            impl From<[<Inorm $size>]> for f32 {
+                #[inline]
+                fn from(f: [<Inorm $size>]) -> f32 {
+                    f.to_f32()
+                }
+            }
+            impl From<[<Inorm $size>]> for f64 {
+                #[inline]
+                fn from(f: [<Inorm $size>]) -> f64 {
+                    f.to_f64()
                 }
             }
 
