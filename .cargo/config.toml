@@ -2,6 +2,7 @@
 
 # CHECK
 cl = "clippy"
+clq = "clippy --quiet"
 
 # DOC
 d = "doc --no-deps"
@@ -36,8 +37,10 @@ rrqb = "run --release --quiet --bin"
 rrqe = "run --release --quiet --example"
 
 # TEST
-t = "test -- --nocapture"
-t1 = "test -- --test-threads 1 --nocapture"
+t = "test"
+td = "test --doc"
+t_ = "test -- --nocapture"
+t_1 = "test -- --test-threads 1 --nocapture"
 
 # PUBLISH
 p = "publish --dry-run"
@@ -45,4 +48,12 @@ pa = "publish --dry-run --allow-dirty"
 pp = "publish"
 ppa = "publish --allow-dirty"
 
+# Cargo subcommands:
+## cargo-expand
+E = "expand"
+Eb = "expand --bin"
+Ee = "expand --example"
+El = "expand --lib"
+
 [build]
+# rustdocflags = [ "--html-in-header", "./res/header.html"]

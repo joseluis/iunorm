@@ -1,25 +1,27 @@
 [package]
 name = "iunorm"
-description = "Mapping normalized floating-point numbers to (un)signed integers"
-version = "0.1.1"
+description = "Map normalized floating-point numbers to/from (un)signed integers"
+version = "0.1.2"
 edition = "2021"
 rust-version = "1.58.1"
 authors = ["José Luis Cruz <joseluis@andamira.net>"]
 repository = "https://github.com/joseluis/iunorm"
 documentation = "https://docs.rs/iunorm"
-license = "MIT/Apache-2.0"
+license = "MIT OR Apache-2.0"
 include = [
-	"src/**/*.rs",
-	"Cargo.toml",
-	"LICENSE*",
-	"README.md",
+	"/src/**/*.rs",
+	"/Cargo.toml",
+	"/LICENSE-*",
+	"/README.md",
 ]
 categories = ["no-std", "encoding", "data-structures"]
 keywords = ["normalization", "normal", "float", "integer"]
 publish = true
 
 [dependencies]
-paste = "1.0.6"
+paste = "1.0.9"
 
 [badges]
+# actively-developed, passively-maintained, looking-for-maintainer, as-is,
+# experimental, deprecated, none
 maintenance = { status = "actively-developed" }

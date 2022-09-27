@@ -11,8 +11,10 @@
 //! ```
 //! # use iunorm::*;
 //! assert_eq![u64::MAX, Unorm64::from_f64( 1.0).into()];
+//! assert_eq![0.5, Unorm64(u64::MAX / 2).into()];
 //!
 //! assert_eq![i16::MIN, Inorm16::from_f32(-1.0).into()];
+//! assert_eq![-1.0, Inorm16(i16::MIN).into()];
 //! ```
 //!
 //! Values less
