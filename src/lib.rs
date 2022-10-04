@@ -2,11 +2,7 @@
 //
 //! Mapping normalized floating point numbers to (un)signed integers.
 //!
-//! This library defines multiple types of sizes ranging between 8 and 128-bit,
-//! that can represent a normalized value (between 0 and 1 if unsigned, or -1
-//! and 1 if signed), mapping the range to its `::MIN` & `::MAX` boundaries.
-//!
-//! # Example
+//! # Examples
 //!
 //! ```
 //! # use iunorm::*;
@@ -16,8 +12,6 @@
 //! assert_eq![i16::MIN, Inorm16::from_f32(-1.0).into()];
 //! assert_eq![-1.0, Inorm16(i16::MIN).into()];
 //! ```
-//!
-//! Values less
 //
 
 #![warn(clippy::all)]
@@ -37,3 +31,39 @@ mod test;
 
 mod generate;
 pub use generate::*;
+
+/// Scales an `f32` `x` value in between `[xmin..xmax]` to a new range `[a..b]`.
+///
+/// $$
+/// x' = (b - a) \frac{x - xmin}{xmax - xmin} + a
+/// $$
+///
+/// # Examples
+/// ```
+/// # use iunorm::scale32;
+/// assert_eq![0.25, scale32(90., 0., 360., 0., 1.)];
+/// assert_eq![-0.5, scale32(90., 0., 360., -1., 1.)];
+/// ```
+#[inline]
+#[must_use]
+pub fn scale32(x: f32, xmin: f32, xmax: f32, a: f32, b: f32) -> f32 {
+    (b - a) * (x - xmin) / (xmax - xmin) + a
+}
+
+/// Scales an `f64` `x` value in between `[xmin..xmax]` to a new range `[a..b]`.
+///
+/// $$
+/// x' = (b - a) \frac{x - xmin}{xmax - xmin} + a
+/// $$
+///
+/// # Examples
+/// ```
+/// # use iunorm::scale64;
+/// assert_eq![0.25, scale64(90., 0., 360., 0., 1.)];
+/// assert_eq![-0.5, scale64(90., 0., 360., -1., 1.)];
+/// ```
+#[inline]
+#[must_use]
+pub fn scale64(x: f64, xmin: f64, xmax: f64, a: f64, b: f64) -> f64 {
+    (b - a) * (x - xmin) / (xmax - xmin) + a
+}

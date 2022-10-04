@@ -56,4 +56,4 @@ Ee = "expand --example"
 El = "expand --lib"
 
 [build]
-# rustdocflags = [ "--html-in-header", "./res/header.html"]
+rustdocflags = [ "--html-in-header", "./res/header.html"]

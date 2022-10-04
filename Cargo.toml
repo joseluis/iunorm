@@ -10,6 +10,7 @@ documentation = "https://docs.rs/iunorm"
 license = "MIT OR Apache-2.0"
 include = [
 	"/src/**/*.rs",
+	"res/",
 	"/Cargo.toml",
 	"/LICENSE-*",
 	"/README.md",
@@ -20,6 +21,13 @@ publish = true
 
 [dependencies]
 paste = "1.0.9"
+
+[features]
+
+[dev-dependencies]
+
+[package.metadata.docs.rs]
+rustdoc-args = [ "--html-in-header", "./res/header.html" ]
 
 [badges]
 # actively-developed, passively-maintained, looking-for-maintainer, as-is,
