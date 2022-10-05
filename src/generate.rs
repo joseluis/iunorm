@@ -4,6 +4,8 @@
 //
 
 use crate::{scale32, scale64};
+#[cfg(feature = "std")]
+use std::fmt;
 
 macro_rules! norm_sizes {
     (sizes: $( [$size:literal, $utype:ty, $itype:ty] ),+ ) => {
@@ -23,8 +25,8 @@ macro_rules! norm_sizes {
                 #[inline]
                 #[must_use]
                 pub fn from_f32(f: f32) -> Self {
-                    const RECIP: f32 = 1. / (($utype::MAX) as f32 + 1.);
-                    Self((f / RECIP) as _)
+                    Self((f * (($utype::MAX) as f32 + 1.)) as _)
+                    // Self(scale32(f, 0., 1., $utype::MIN as f32, $utype::MAX as f32 + 1.) as _)
                 }
                 /// Converts the current value to an `f32` normalized to `0..1`.
                 #[inline]
@@ -46,7 +48,7 @@ macro_rules! norm_sizes {
                 #[must_use]
                 pub fn to_f32_minmax(&self, min: f32, max: f32) -> f32 {
                     debug_assert![min < max];
-                    scale32(self.0 as f32, $itype::MIN as f32, $itype::MAX as f32, min, max)
+                    scale32(self.0 as f32, $utype::MIN as f32, $utype::MAX as f32, min, max)
                 }
 
                 #[doc = "Returns a `" [<Unorm $size>] "` from an `f64`" ]
@@ -54,8 +56,8 @@ macro_rules! norm_sizes {
                 #[inline]
                 #[must_use]
                 pub fn from_f64(f: f64) -> Self {
-                    const RECIP: f64 = 1. / (($utype::MAX) as f64 + 1.);
-                    Self((f / RECIP) as _)
+                    Self((f * (($utype::MAX) as f64 + 1.)) as _)
+                    // Self(scale64(f, 0., 1., $utype::MIN as f64, $utype::MAX as f64 + 1.) as _)
                 }
                 /// Converts the current value to an `f64` normalized to `0..1`.
                 #[inline]
@@ -77,7 +79,14 @@ macro_rules! norm_sizes {
                 #[must_use]
                 pub fn to_f64_minmax(&self, min: f64, max: f64) -> f64 {
                     debug_assert![min < max];
-                    scale64(self.0 as f64, $itype::MIN as f64, $itype::MAX as f64, min, max)
+                    scale64(self.0 as f64, $utype::MIN as f64, $utype::MAX as f64, min, max)
+                }
+            }
+
+            #[cfg(feature="std")]
+            impl fmt::Display for [<Unorm $size>] {
+                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                    self.0.fmt(f)
                 }
             }
 
@@ -123,7 +132,7 @@ macro_rules! norm_sizes {
 
             /* Signed */
 
-            #[doc = "A normalized number mapped to range of an [`" $itype "`]."]
+            #[doc = "A normalized number mapped to the range of an [`" $itype "`]."]
             #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
             pub struct [<Inorm $size>](pub $itype);
 
@@ -133,8 +142,8 @@ macro_rules! norm_sizes {
                 #[inline]
                 #[must_use]
                 pub fn from_f32(f: f32) -> Self {
-                    const RECIP: f32 = 1. / (($itype::MAX) as f32 + 1.);
-                    Self((f / RECIP) as _)
+                    Self((f * (($itype::MAX) as f32 + 1.)) as _)
+                    // Self(scale32(f, 0., 1., $itype::MIN as f32, $itype::MAX as f32 + 1.) as _)
                 }
                 /// Converts the current value to an `f32` normalized to `-1..1`.
                 #[inline]
@@ -167,8 +176,7 @@ macro_rules! norm_sizes {
                 #[inline]
                 #[must_use]
                 pub fn from_f64(f: f64) -> Self {
-                    const RECIP: f64 = 1. / (($itype::MAX) as f64 + 1.);
-                    Self((f / RECIP) as _)
+                    Self((f * (($itype::MAX) as f64 + 1.)) as _)
                 }
                 #[doc = "Converts the current value to an `f64` normalized to `-1..1`." ]
                 #[inline]
@@ -187,6 +195,7 @@ macro_rules! norm_sizes {
                 pub fn from_f64_minmax(f: f64, min: f64, max: f64) -> Self {
                     debug_assert![min < max];
                     Self(scale64(f, min, max, $itype::MIN as f64, $itype::MAX as f64) as _)
+                    // Self(scale64(f, 0., 1., $itype::MIN as f64, $itype::MAX as f64 + 1.) as _)
                 }
                 /// Converts the current value to an `f64` normalized to `min..max`.
                 #[inline]
@@ -194,6 +203,13 @@ macro_rules! norm_sizes {
                 pub fn to_f64_minmax(&self, min: f64, max: f64) -> f64 {
                     debug_assert![min < max];
                     scale64(self.0 as f64, $itype::MIN as f64, $itype::MAX as f64, min, max)
+                }
+            }
+
+            #[cfg(feature="std")]
+            impl fmt::Display for [<Inorm $size>] {
+                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                    self.0.fmt(f)
                 }
             }
 

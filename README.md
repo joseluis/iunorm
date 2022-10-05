@@ -4,8 +4,17 @@
 [![API](https://docs.rs/iunorm/badge.svg)](https://docs.rs/iunorm/)
 [![Lines Of Code](https://tokei.rs/b1/github/joseluis/iunorm?category=code)](https://github.com/joseluis/iunorm)
 
-This library defines multiple types of sizes ranging between 8 and 128-bit,
-that can represent a normalized value (between 0 and 1 if unsigned, or -1
-and 1 if signed), mapping the range to its `::MIN` & `::MAX` boundaries.
+This library facilitates mapping between floating-point numbers, normalized
+to some range, and (un)signed integers.
 
-They can be created from f32 & f64.
+- `Inorm` types are a new-type over **signed** integers that *by default*
+map to floating-point range of `-1..1`.
+- `Unorm` types are a new-type over **unsigned** integers that *by default*
+map to floating-point range of `0..1`.
+
+The *by default* mapping is used by the `From`/`Into` traits and the
+`from_f32`/`to_f32` methods, and the equivalent `f64` versions.
+
+Additionally both `Inorm` & `Unorm` types can map from/to any custom
+floating-point range by using the `from_f32_minmax`/`to_f32_minmax` methods,
+and the equivalent `f64` versions.
