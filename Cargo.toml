@@ -2,8 +2,8 @@
 name = "iunorm"
 description = "Map normalized floating-point numbers to/from (un)signed integers"
 version = "0.2.0"
-edition = "2021"
-rust-version = "1.58.1"
+edition = "2018" # 2021 increases MSRV to 1.56.1
+rust-version = "1.43.1"
 authors = ["José Luis Cruz <joseluis@andamira.net>"]
 repository = "https://github.com/joseluis/iunorm"
 documentation = "https://docs.rs/iunorm"
@@ -20,7 +20,7 @@ keywords = ["normalization", "normal", "float", "integer"]
 publish = true
 
 [dependencies]
-paste = "1.0.9"
+paste = "1.0.10"
 
 [features]
 default = ["std"]
@@ -33,6 +33,4 @@ approx = { version = "0.5.1", default-features = false }
 rustdoc-args = [ "--html-in-header", "./res/header.html" ]
 
 [badges]
-# actively-developed, passively-maintained, looking-for-maintainer, as-is,
-# experimental, deprecated, none
-maintenance = { status = "actively-developed" }
+maintenance = { status = "passively-maintained" }
