@@ -1,9 +1,9 @@
 [package]
 name = "iunorm"
 description = "Map normalized floating-point numbers to/from (un)signed integers"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2018" # 2021 increases MSRV to 1.56.1
-rust-version = "1.43.1"
+rust-version = "1.43.1" # checked for v0.2.1
 authors = ["José Luis Cruz <joseluis@andamira.net>"]
 repository = "https://github.com/joseluis/iunorm"
 documentation = "https://docs.rs/iunorm"
