@@ -29,8 +29,5 @@ std = []
 [dev-dependencies]
 approx = { version = "0.5.1", default-features = false }
 
-[package.metadata.docs.rs]
-rustdoc-args = [ "--html-in-header", "./res/header.html" ]
-
 [badges]
 maintenance = { status = "passively-maintained" }
