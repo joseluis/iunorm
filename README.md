@@ -19,6 +19,10 @@ Additionally both `Inorm` & `Unorm` types can map from/to any custom
 floating-point range by using the `from_f32_minmax`/`to_f32_minmax` methods,
 and the equivalent `f64` versions.
 
-# Status
+## Status
 
-Stable
+This library is considered stable.
+
+## License
+This project is dual licensed under either [MIT](LICENSE-MIT)
+or [Apache-2.0](LICENSE-APACHE) at your option.
