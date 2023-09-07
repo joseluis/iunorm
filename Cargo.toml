@@ -20,7 +20,7 @@ keywords = ["normalization", "normal", "float", "integer"]
 publish = true
 
 [dependencies]
-paste = "1.0.12"
+paste = "1.0.14"
 
 [features]
 default = []
