@@ -3,11 +3,9 @@
 //!
 //
 
-/// Scales an `f32` `v`alue in between `[min..max]` to a new range `[a..b]`.
+/// Scales an `f32` `v`alue in between `[min..=max]` to a new range `[a..=b]`.
 ///
-/// $$
-/// v' = (b - a) \frac{v - min}{max - min} + a
-/// $$
+/// $$ \large v' = (b - a) \frac{v - min}{max - min} + a $$
 ///
 /// # Examples
 /// ```
@@ -24,11 +22,9 @@ pub fn scale32(v: f32, min: f32, max: f32, a: f32, b: f32) -> f32 {
     (b - a) * (v - min) / (max - min) + a
 }
 
-/// Scales an `f64` `v`alue in between `[min..max]` to a new range `[a..b]`.
+/// Scales an `f64` `v`alue in between `[min..=max]` to a new range `[a..=b]`.
 ///
-/// $$
-/// v' = (b - a) \frac{v - min}{max - min} + a
-/// $$
+/// $$ \large v' = (b - a) \frac{v - min}{max - min} + a $$
 ///
 /// # Examples
 /// ```
