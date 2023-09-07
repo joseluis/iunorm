@@ -2,7 +2,7 @@
 
 [![Crate](https://img.shields.io/crates/v/iunorm.svg)](https://crates.io/crates/iunorm)
 [![API](https://docs.rs/iunorm/badge.svg)](https://docs.rs/iunorm/)
-[![Lines Of Code](https://tokei.rs/b1/github/joseluis/iunorm?category=code)](https://github.com/joseluis/iunorm)
+[![MSRV: 1.43.1](https://flat.badgen.net/badge/MSRV/1.43.1/purple)](https://releases.rs/docs/1.43.1/)
 
 This library facilitates mapping between floating-point numbers, normalized
 to some range, and (un)signed integers.
