@@ -4,8 +4,7 @@
 //
 
 use crate::{scale32, scale64};
-#[cfg(feature = "std")]
-use std::fmt;
+use core::fmt;
 
 macro_rules! norm_sizes {
     (sizes: $( [$size:literal, $utype:ty, $itype:ty] ),+ ) => {
@@ -83,7 +82,6 @@ macro_rules! norm_sizes {
                 }
             }
 
-            #[cfg(feature="std")]
             impl fmt::Display for [<Unorm $size>] {
                 fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
                     self.0.fmt(f)
@@ -206,7 +204,6 @@ macro_rules! norm_sizes {
                 }
             }
 
-            #[cfg(feature="std")]
             impl fmt::Display for [<Inorm $size>] {
                 fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
                     self.0.fmt(f)

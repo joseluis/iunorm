@@ -23,8 +23,9 @@ publish = true
 paste = "1.0.12"
 
 [features]
-default = ["std"]
-std = []
+default = []
+
+std = [] # unused
 
 [dev-dependencies]
 approx = { version = "0.5.1", default-features = false }
