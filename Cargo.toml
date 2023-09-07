@@ -34,6 +34,7 @@ approx = { version = "0.5.1", default-features = false }
 [package.metadata.docs.rs]
 no-default-features = true
 features = ["nightly_docs"]
+rustdoc-args = [ "--html-in-header", "./res/rustdoc-header.html" ]
 
 [badges]
 maintenance = { status = "passively-maintained" }
