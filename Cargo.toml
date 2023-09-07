@@ -9,9 +9,9 @@ repository = "https://github.com/joseluis/iunorm"
 documentation = "https://docs.rs/iunorm"
 license = "MIT OR Apache-2.0"
 include = [
-	"/src/**/*.rs",
-	"res/",
 	"/Cargo.toml",
+	"/src/**/*.rs",
+	"/res/*.html",
 	"/LICENSE-*",
 	"/README.md",
 ]
