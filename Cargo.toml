@@ -15,7 +15,7 @@ include = [
 	"/LICENSE-*",
 	"/README.md",
 ]
-categories = ["no-std", "encoding", "data-structures"]
+categories = ["encoding", "data-structures", "no-std::no-alloc"]
 keywords = ["normalization", "normal", "float", "integer"]
 publish = true
 
